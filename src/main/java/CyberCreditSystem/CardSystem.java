@@ -22,9 +22,7 @@ public class CardSystem
 
     public static void main(String[] args)
     {
-       // loadValidTypes();
-                readFromFile("ValidTypes.txt");
-
+        readFromFile("ValidTypes.txt");
         validTypes.printValidTypes();
         enterCard();
     }
@@ -36,6 +34,7 @@ public class CardSystem
         try
         {
             sc = new Scanner(new File(fileName));
+            //simple delmiter seperating each var
             sc.useDelimiter("/");
 
             while (sc.hasNext())
@@ -77,21 +76,6 @@ public class CardSystem
             System.err.println( e.getLocalizedMessage());
         }
     }
-
-    // read from a file
-    public static void loadValidTypes()
-    {
-        CardType visa, masterCard, americanExpress, discover;
-        visa = new CardType("Visa", 16);
-        masterCard = new CardType("MasterCard", 16);
-        americanExpress = new CardType("American Express", 15);
-        discover = new CardType("Discover", 16);
-        validTypes.addValidType(visa);
-        validTypes.addValidType(masterCard);
-        validTypes.addValidType(americanExpress);
-        validTypes.addValidType(discover);
-    }
-
     private static void validateCard(String type, String number) throws InvalidCardException
     {
         int index = validTypes.findTypeIndex(type);
