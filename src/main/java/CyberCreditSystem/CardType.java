@@ -6,22 +6,34 @@ package CyberCreditSystem;
  */
 public class CardType
 {
-    final private String NAME;
-    final private int VALIDLENGTH;
+     private String name;
+     private int validLength;
+
     
     public CardType(String name, int length)
     {
-        this.VALIDLENGTH = length;
-        this.NAME = name;
+        this.validLength = length;
+        this.name = name;
     }
     public String getName()
     {
-        return this.NAME;
+        return this.name;
     }
     public int getValidLength()
     {
-       return this.VALIDLENGTH;
+       return this.validLength;
     }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public void setValidLength(int validLength)
+    {
+        this.validLength = validLength;
+    }
+    
     @Override
     public String toString()
     {
