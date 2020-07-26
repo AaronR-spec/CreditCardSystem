@@ -5,6 +5,8 @@
  */
 package CyberCreditSystem;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -20,11 +22,44 @@ public class CardSystem
 
     public static void main(String[] args)
     {
-        loadValidTypes();
+       // loadValidTypes();
+                readFromFile("ValidTypes.txt");
+
         validTypes.printValidTypes();
         enterCard();
     }
+    public static void readFromFile(String fileName)
+    {
+        Scanner sc = new Scanner("");
+        String name;
+        int length;
+        try
+        {
+            sc = new Scanner(new File(fileName));
+            sc.useDelimiter("/");
 
+            while (sc.hasNext())
+            {
+                name = sc.next().trim(); 
+                length  = sc.nextInt(); 
+
+                validTypes.addValidType(new CardType(name,length));
+            }
+        }
+
+        catch (IOException e)
+        {
+            System.out.println("File Not Found. " + e.getMessage());
+        }
+        catch (InputMismatchException e)
+        {
+            System.out.println("Format Is Wrong" + e.getMessage());
+        }
+        finally
+        {
+            sc.close();
+        }
+    }
     public static void enterCard()
     {
         String type,cardNumber;
